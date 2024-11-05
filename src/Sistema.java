@@ -69,7 +69,7 @@ public class Sistema {
             int macaNum = scanner.nextInt();
             
             if (macaNum == 0) {
-                System.out.println("Você ganhou: " + game.calcularPontuacao());
+                System.out.println("Você ganhou: " + game.calcularPontuacao(game.valorInicial));
                 break;
             }
 
@@ -83,17 +83,17 @@ public class Sistema {
             } else {
                 System.out.println("Maçã escolhida com sucesso!");
                 System.out.println("Dabloons iniciais: " + game.valorInicial);
-                System.out.println("Valor da recompensa: " + game.calcularPontuacao());
+                System.out.println("Valor da recompensa: " + game.calcularPontuacao(game.valorInicial));
             }
 
             if (game.macasEscolhidas == game.macas.size() - game.quantMinhocas) {
                 System.out.println("Você escolheu todas as maçãs. Fim de jogo.");
                 System.out.println("Dabloons iniciais: " + game.valorInicial);
-                System.out.println("Valor da recompensa: " + game.calcularPontuacao());
+                System.out.println("Valor da recompensa: " + game.calcularPontuacao(game.valorInicial));
                 break;
             }
         }
-        usuario.AdicionarPontos(game.calcularPontuacao());
+        usuario.AdicionarPontos(game.calcularPontuacao(game.valorInicial));
     }
 
     private int solicitarValorInicial() {

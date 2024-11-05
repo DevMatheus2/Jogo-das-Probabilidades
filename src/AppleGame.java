@@ -6,10 +6,9 @@ import java.util.Random;
 
 public class AppleGame {
     public HashMap<Integer, Boolean> macas;
-    public ArrayList<Integer> macasPodres;
+    public List<Integer> macasPodres;
     public int quantMinhocas;
     public int macasEscolhidas = 0;
-    public float multiplicador;
     public int valorInicial;
 
     public AppleGame(int quantMacas , int valorInicial, int quantMinhocas) {
@@ -18,27 +17,28 @@ public class AppleGame {
         this.macas = new HashMap<Integer, Boolean>();
         this.macasPodres = new ArrayList<Integer>();
         iniciarMacas();
-        this.multiplicador = (float) (macas.size() - quantMinhocas) / (macas.size() - quantMinhocas - macasEscolhidas);
     }
 
     private void iniciarMacas() {
         for (int i = 1; i <= 16; i++) {
             macas.put(i, false);
         }
-        escolherMacasPodres();
+        macasPodres = escolherMacasPodres();
     }
 
-    private void escolherMacasPodres() {
+    private List<Integer> escolherMacasPodres() {
         Random random = new Random();
+        List<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < quantMinhocas; i++) {
             int macaPodre = random.nextInt(macas.keySet().size());
-            if (macasPodres.contains(macaPodre)) {
+            if (list.contains(macaPodre)) {
                 i--;
                 continue;
             } else {
-                macasPodres.add(macaPodre);
+                list.add(macaPodre);
             }
         }
+        return list;
     }
 
     public int selecionarMaca(int macaNum) {
@@ -51,7 +51,6 @@ public class AppleGame {
 
         macas.put(macaNum, true);
         macasEscolhidas++;
-        setMultiplicador();
 
         return 1;
     }
@@ -66,13 +65,7 @@ public class AppleGame {
         return macasEscolhidas;
     }
 
-    public int calcularPontuacao() {
-        int pontos = (int) ((int) valorInicial * multiplicador);
-
-        return pontos;
-    }
-
-    public void setMultiplicador() {
-        this.multiplicador = (float) (macas.size() - quantMinhocas) / (macas.size() - quantMinhocas - macasEscolhidas);
+    public float calcularPontuacao(float valorInicial) {
+        return valorInicial * ((float) (macas.size() - quantMinhocas) / (macas.size() - quantMinhocas - macasEscolhidas));
     }
 }

@@ -75,7 +75,6 @@ public class Roleta {
         while(i < numAleatorio) {
             numDaVez = i % 37;
             escreverRoleta(numDaVez);
-            // sleep
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {

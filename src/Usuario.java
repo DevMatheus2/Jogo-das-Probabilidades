@@ -1,6 +1,6 @@
 public class Usuario {
     private String name;
-    private int dabloons;
+    private float dabloons;
 
     public Usuario(int dabloons) {
         this.dabloons = dabloons;
@@ -11,17 +11,17 @@ public class Usuario {
         this.name = name;
     }
 
-    public int AdicionarPontos(int dabloons) {
+    public float AdicionarPontos(float dabloons) {
         dabloons += dabloons;
         return dabloons;
     }
 
-    public int RemoverPontos(int dabloons) {
+    public float RemoverPontos(float dabloons) {
         dabloons -= dabloons;
         return dabloons;
     }
 
-    public int mostrarSaldo() {
+    public float mostrarSaldo() {
         return dabloons;
     }
 }
